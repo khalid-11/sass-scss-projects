@@ -1,0 +1,26 @@
+
+// @include linearGradient(to right , color , color );
+@mixin linearGradient($direction , $clr-1 : transparent, $clr-2: transparent ){
+  background-image: linear-gradient($direction , $clr-1  , $clr-2  )
+}
+
+
+// animation mixin 
+// @include fall-animation($distance: 30px) ;
+
+@mixin fall-animation($distance: 30px) {
+  animation: fall-animation 0.2s ease-in-out forwards;
+  
+  @keyframes fall-animation {
+    from {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY($distance);
+    }
+  }
+}
+
+

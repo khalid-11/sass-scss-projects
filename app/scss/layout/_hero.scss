@@ -1,0 +1,90 @@
+@use '../util' as u ;
+@forward '../util/breakpoints';
+@forward '../util/animations' ;
+
+/*! hero section */
+.hero{
+  background-color: u.$veryLightGray;
+  padding-bottom:80px;
+  @include u.breakpoint-up(large){
+    padding-bottom: 0;
+  }
+  .container{
+    @include u.breakpoint-up(large){
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__image{
+    position: relative;
+    background-image: url("../../../images/bg-intro-mobile.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: u.rem(280);
+    @include u.breakpoint-up(medium){
+      min-height: 25rem;
+      background-position: center 70%;
+    }
+    @include u.breakpoint-up(large){
+      flex: 3;
+      order: 2;
+      height: u.rem(656);
+      background-image: none;
+      // background-image: url("../../../images/bg-intro-desktop.svg");
+      // background-position: left center;
+    }
+    
+    &::before{
+      @include u.breakpoint-up(large){
+      content: "";
+      height: 100%;
+      position:absolute;
+      background-image: url("../../../images/bg-intro-desktop.svg");
+      background-size: 93%;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      width: 162%;
+      background-size: 107%;
+      background-position: 0% 83%; 
+      }
+    }
+    &::after{
+      content: "";
+      position:absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url("../../../images/image-mockups.png");
+      background-size: 93%;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+
+      @include u.breakpoint-up(medium){
+        background-size:52%;
+      }
+
+      @include u.breakpoint-up(large){
+        width: 120%;
+        height: 122%;
+        background-size: 94%;
+        background-repeat: no-repeat;
+        background-position: center 150%;
+        left: 22%;
+      }
+    }
+
+  }
+
+  &__text{
+    text-align: center;
+    @include u.breakpoint-up(large){
+      flex: 2;
+      order: 1;
+      text-align: left;
+    }
+    p{
+      line-height: 1.5;
+      margin-bottom: 2.25rem;
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@use '../util' as u ;
+
+.articles{
+  background-color: #fafafa;
+
+}
+
+.article{
+  &__item{
+    cursor: pointer;
+    box-shadow: 0px 3px 12px #bbbbbb26;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: all .2s ease-in-out;
+    &:hover{
+      transform: scale(1.05);
+      box-shadow: 0px 3px 15px #92929224;
+      .article__title{
+        color:u.$limeGreen;
+      }
+    }
+  }
+  &__content{
+    h2{
+      font-size: u.rem(41);
+      color: u.$darkBlue;
+    }
+  }
+  &__grid{
+    display:grid;
+    gap :u.rem(30);
+    grid-template-columns: 1fr;
+    @include u.breakpoint-up(medium){
+      grid-template-columns: repeat(2 , 1fr);
+    }
+    @include u.breakpoint-up(large){
+      grid-template-columns: repeat(4 , 1fr);
+    }
+  }
+  &__image{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    width:100%;
+    height: 200px;
+  }
+  &__text{
+    padding:1rem;
+  }
+  &__author{
+    font-size: u.rem(12);
+    color:u.$grayishBlue;
+    margin-bottom: 1rem;
+  }
+  &__title{
+    transition: color .2s ease-in-out;
+    font-size: 1rem;
+    color:black;
+    margin-bottom: 1rem;
+  }
+  &__descereption{
+    font-size: u.rem(14);
+  }
+}

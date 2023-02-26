@@ -1,0 +1,158 @@
+@use '../util' as u ;
+@forward '../util/animations' ;
+
+/*!dynamic toggle menu height */
+:root{
+  --client-height:378.8px; /*! this value changes dynamicly*/
+}
+
+/*! header start ---- */
+.header{
+  position: relative;
+  //overlay 
+  .overlay{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top:0 ;
+    left: 0 ;
+    @include u.linearGradient(to bottom , u.$darkBlue , transparent );
+  }
+    // toggle open 
+    &.open{
+      @include u.breakpoint-down(small){
+        .overlay.show{
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+      .header__menu{
+        > span:first-child{
+          transform: rotate(45deg) translate(5px , 5px);
+        }
+        > span:nth-child(2){
+          opacity: 0;
+        }
+        > span:last-child{
+          transform: rotate(-45deg) translate(5px , -5px);
+        }
+      }
+    }
+
+  nav{
+    position: relative;
+    padding-block: 1rem;
+    background-color: #fff;
+
+  }
+  // header__logo
+  &__logo{
+    img{
+      width: u.rem(141);
+      height: u.rem(22);
+      max-width:100%;
+    }
+  }
+  // header__menu {hamburgar styling}
+  &__menu{
+    > span{
+      display: block ;
+      width: 26px ;
+      height: 2px ;
+      border-radius: 1px;
+      background-color: u.$darkBlue ;
+      transition: all 0.3s  ease-in-out ;
+      &:not(:last-child){
+        margin-bottom: 5px ;
+      }
+    }
+    @include u.breakpoint-up(medium){ // 700 < hidden 
+      display: none;
+    }
+  }
+  
+  // header__links
+  &__links{
+    position: relative;
+    a{
+      font-size: u.rem(14);
+      color: u.$grayishBlue ;
+      transition: color .3s ease-in-out;
+      position: relative ;
+      &:not(:last-child){
+        margin-right: u.rem(24);
+      }
+      &:hover,
+      &.active{
+        color: u.$darkBlue
+      }
+      @include u.breakpoint-up(medium){ // hover effect only in 700 and bigger 
+        &:hover::before,
+        &.active::before{
+          content: "";
+          position: absolute ;
+          bottom: 0 ;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          @include u.linearGradient(to right , u.$limeGreen , u.$brightCyan) ;
+          border-radius: 2.5px;
+          @include u.fall-animation(30px)
+        }
+      }
+    }
+  }
+  &__links{
+      @include u.breakpoint-down(small){
+        position:absolute;
+        display:block;
+        text-align: center;
+        top: calc(100% + 1rem);
+        left:50%;
+        width:90vw;
+        height: 0;
+        transform: translateX(-50%);
+        background-color: white;
+        border-radius: .4rem;
+        overflow: hidden;
+        z-index: 111;
+        -webkit-transition: height  0.4s ease;
+        -moz-transition:  height 0.4s ease;
+        transition: height  0.4s ease;
+        >a{
+          display:block;
+          opacity: 0;
+          transition: .3s ;
+          width:100%;
+          padding-top:1rem;
+          font-size: u.rem(18);
+          &:not(:last-child){ 
+            margin-inline: 0;
+            padding-bottom:1rem;
+          }
+          &:last-child{
+            padding-bottom:1rem;
+          }
+          &:hover{
+            background-color: darken(u.$white, 3);
+          }
+        }
+      }
+      &.show-links{
+        @include u.breakpoint-down(small){
+          height: var(--client-height) ;
+          transition:  .4s ease ;
+          transform: translateX(-50%);
+          a{
+            opacity: 1 ;
+            transition: opacity;
+          }
+        }
+      }
+    }
+}
+
+

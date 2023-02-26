@@ -1,0 +1,15 @@
+@use 'functions' as u ;
+// colors 
+$darkBlue: hsl(233 , 26% , 24%) ;
+$limeGreen: hsl(136 , 65% , 51%) ;
+$brightCyan: hsl(192, 70%, 51%) ;
+$grayishBlue: #9698a6 ;
+$lightGrayishBlue: #f3f4f6 ;
+$veryLightGray: #fafafa ;
+$white: hsl(0, 0%, 100%) ;
+
+// font sizes
+$font-sm: 0.875rem; // 14pxø
+$font-med: 1.125rem; // 18px 
+$font-lg: 1.25rem; // px 
+$font-xl: u.rem(52);

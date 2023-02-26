@@ -1,0 +1,59 @@
+@use '../util' as u ;
+
+.feature{
+  background-color: u.$lightGrayishBlue;
+  text-align: center;
+  @include u.breakpoint-up(medium){
+    text-align: left;
+  }
+  &__intro{
+    @include u.breakpoint-up(large){
+      max-width: 60%;
+      margin-bottom: u.rem(60);
+    }
+  }
+  &__grid{
+    @include u.breakpoint-up(medium){
+      display:flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__item{
+    padding: u.rem(15);
+    &:not(:last-child){
+      border-bottom: .5px solid u.$grayishBlue;
+      @include u.breakpoint-up(medium){
+        border-bottom: none;
+      }
+    }
+
+    @include u.breakpoint-up(medium){
+      flex: 0 0 50%;
+      border-bottom: none;
+    }
+    @include u.breakpoint-up(large){
+      flex: 1;
+  }
+  }
+  &__icon{
+    margin-bottom: u.rem(30);
+    @include u.breakpoint-up(large){
+      margin-bottom: u.rem(44);
+    }
+  }
+  &__title{
+    font-size: u.rem(20);
+    font-weight: 300;
+    line-height: 1.15;
+    color: u.$darkBlue;
+    margin-bottom: u.rem(23);
+    @include u.breakpoint-up(large){
+      font-size: u.rem(24);
+      margin-bottom: u.rem(24);
+    }
+  }
+  &__description{
+    font-size: u.rem(14);
+    line-height: 1.5;
+  }
+}
